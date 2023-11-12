@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decryption Frontend</title>
+</head>
+<body>
+  <h2>Decryption Frontend</h2>
+
+  <label for="encryptedData">Encrypted Data (delimited by ;;):</label>
+  <textarea id="encryptedData" placeholder="Enter encrypted data"></textarea>
+
+  <button onclick="decrypt()">Decrypt</button>
+
+  <h3>Decrypted Message:</h3>
+  <div id="decryptedMessage"></div>
+
+  <script>
+    async function decrypt() {
+      const encryptedData = document.getElementById('encryptedData').value;
+
+      const response = await fetch('http://localhost:4000/decrypt', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ encryptedData}),
+      });
+
+      const data = await response.json();
+
+      document.getElementById('decryptedMessage').textContent = data.decryptedMessage;
+    }
+
+    function readFileAsText(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+          resolve(event.target.result);
+        };
+
+        reader.onerror = (error) => {
+          reject(error);
+        };
+
+        reader.readAsText(file);
+      });
+    }
+  </script>
+</body>
+</html>
