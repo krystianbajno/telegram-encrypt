@@ -27,7 +27,7 @@ const sendMessage = async (message) => {
     symmetricKey
   ).toString('base64');
 
-  // Convert the encrypted message and encrypted symmetric key to base64-encoded strings
+  // Convert the encrypted message to base64-encoded strings
   const encryptedMessageBase64 = encryptedMessage.toString('base64');
   await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, `${encryptedSymmetricKey};;${encryptedMessageBase64}`)
 };
