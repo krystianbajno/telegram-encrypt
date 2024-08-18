@@ -6,17 +6,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Decryption Frontend</title>
 </head>
+<style>
+body {
+ background-color: #121212;
+ color: #fafafa;
+ display: flex;
+ flex-direction: column;
+ font-family: monospace;
+}
+
+label {
+  margin-bottom: 16px;
+}
+
+textarea {
+  background: #323232;
+  color: white;
+  min-height: 300px;
+  width: 100%;
+}
+
+button {
+  margin-top: 16px;
+  display: flex;
+  width: 200px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  background: #4a4a4a;
+  border: none;
+  color: #4afa4a;
+  font-size: 16px;
+  cursor: pointer;
+}
+.enc, .dec {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+</style>
 <body>
-  <h2>Decryption Frontend</h2>
-
-  <label for="encryptedData">Encrypted Data (delimited by ;;):</label>
-  <textarea id="encryptedData" placeholder="Enter encrypted data"></textarea>
-
-  <button onclick="decrypt()">Decrypt</button>
-
+  <h2>DECRYPT</h2>
+  <div class="enc">
+    <label for="encryptedData">Encrypted Data (delimited by ;;):</label>
+    <textarea id="encryptedData" placeholder="Enter encrypted data"></textarea>
+    <button onclick="decrypt()">Decrypt</button>
+  </div>
   <h3>Decrypted Message:</h3>
-  <div id="decryptedMessage"></div>
-
+  <div class="dec">
+    <textarea id="decryptedMessage"></textarea>
+  </div>
   <script>
     async function decrypt() {
       const encryptedData = document.getElementById('encryptedData').value;
